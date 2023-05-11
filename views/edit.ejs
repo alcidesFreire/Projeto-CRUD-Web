@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editar usuário</title>
+    <style>
+      /* Estilos CSS para o formulário */
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+      }
+      label {
+        margin-top: 10px;
+      }
+      input[type="submit"] {
+        margin-top: 20px;
+        align-self: flex-end;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Editar usuário</h1>
+    <form action="/edit/<%= data.cod_usuario %>" method="post">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" value="<%= data.nome %>" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" value="<%= data.email %>" required>
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" name="telefone" value="<%= data.telefone %>">
+      <label for="telefone">CPF:</label>
+      <input type="tel" id="cpf" name="cpf" value="<%= data.cpf %>">
+
+      <label for="telefone">Senha:</label>
+      <input type="tel" id="senha" name="senha" value="<%= data.senha %>">
+
+      
+      <input type="submit" value="Atualizar">
+    </form>
+  </body>
+</html>

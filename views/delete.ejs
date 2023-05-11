@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deletar Item</title>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+      input[type="submit"] {
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <% const msg = '';%>
+
+    <h1>Deletar Item</h1>
+    <% if (msg) { %>
+    <p><%= msg %></p>
+    <% } %>
+    <form action="/delete/<%= data.cod_usuario %>" method="post">
+      <label for="confirm-delete">Tem certeza que deseja deletar este item?</label>
+      <input type="checkbox" id="confirm-delete" name="confirm-delete" required>
+      <input type="submit" value="Deletar">
+    </form>
+  </body>
+</html>
