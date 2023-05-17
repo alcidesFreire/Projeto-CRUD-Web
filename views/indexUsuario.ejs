@@ -38,7 +38,7 @@
   <body>
     <% const msg = '';%>
     <h1>Usuários</h1>
-    <a href="/add">Adicionar Usuário</a>
+    <a href="/add/usuario">Adicionar Usuário</a>
 
     <table>
       <thead>
@@ -62,8 +62,8 @@
           <td><%= item.senha %></td>
           <td><%= item.email %></td>
           <td>
-            <a href="/edit/<%= item.cod_usuario %>">Editar</a>
-            <a href="/delete/<%= item.cod_usuario %>">Deletar</a>
+            <a href="/edit/usuario/<%= item.cod_usuario %>">Editar</a>
+            <a href="/delete/usuario/<%= item.cod_usuario %>">Deletar</a>
           </td>
         </tr>
         <% }) %>
