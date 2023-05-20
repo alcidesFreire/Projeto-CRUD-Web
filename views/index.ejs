@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulário com Quadrados Alinhados</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilos adicionais */
+        .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            height: 200px;
+        }
+
+        .square.usuario {
+            background-color: blue;
+        }
+
+        .square.veiculo {
+            background-color: green;
+        }
+
+        .square.dono-veiculo {
+            background-color: red;
+        }
+
+        .square:hover {
+            border-radius: 20%;
+            cursor: pointer;
+            border: solid 2px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5 mb-4">Alcides Veículos</h1>
+        <form>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="square usuario">
+                        <a href="/index/usuario" class="text-white">Usuário</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="square veiculo">
+                        <a href="#" class="text-white">Veículo</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="square dono-veiculo">
+                        <a href="/index/dono" class="text-white">Dono</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

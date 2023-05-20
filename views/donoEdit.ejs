@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editar Dono</title>
+    <style>
+      /* Estilos CSS para o formulário */
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+      }
+      label {
+        margin-top: 10px;
+      }
+      input[type="submit"] {
+        margin-top: 20px;
+        align-self: flex-end;
+      }
+      h1{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Editar dono <%= data.nome %></h1>
+    <form action="/edit/dono/<%= data.cod_dono_veiculo %>" method="post">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" value="<%= data.nome %>" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" value="<%= data.email %>" required>
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" name="telefone" value="<%= data.telefone %>">
+      <label for="telefone">CPF:</label>
+      <input type="tel" id="cpf" name="cpf" value="<%= data.cpf %>">
+
+      <label for="telefone">Endereço:</label>
+      <input type="tel" id="endereco" name="endereco" value="<%= data.endereco %>">
+
+      
+      <input type="submit" value="Atualizar">
+    </form>
+    <a href="/index/dono">Voltar</a>
+  </body>
+</html>
