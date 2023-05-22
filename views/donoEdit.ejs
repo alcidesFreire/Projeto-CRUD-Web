@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Editar Dono</title>
-    <style>
-      /* Estilos CSS para o formulário */
-      form {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        margin: auto;
-      }
-      label {
-        margin-top: 10px;
-      }
-      input[type="submit"] {
-        margin-top: 20px;
-        align-self: flex-end;
-      }
-      h1{
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <title>Editar Dono</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    /* Additional custom styles */
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
     <h1>Editar dono <%= data.nome %></h1>
     <form action="/edit/dono/<%= data.cod_dono_veiculo %>" method="post">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" value="<%= data.nome %>" required>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" value="<%= data.email %>" required>
-      <label for="telefone">Telefone:</label>
-      <input type="tel" id="telefone" name="telefone" value="<%= data.telefone %>">
-      <label for="telefone">CPF:</label>
-      <input type="tel" id="cpf" name="cpf" value="<%= data.cpf %>">
-
-      <label for="telefone">Endereço:</label>
-      <input type="tel" id="endereco" name="endereco" value="<%= data.endereco %>">
-
-      
-      <input type="submit" value="Atualizar">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="<%= data.nome %>" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= data.email %>" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" value="<%= data.telefone %>" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="cpf">CPF:</label>
+        <input type="tel" id="cpf" name="cpf" value="<%= data.cpf %>" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="endereco">Endereço:</label>
+        <input type="tel" id="endereco" name="endereco" value="<%= data.endereco %>" class="form-control">
+      </div>
+      <input type="submit" value="Atualizar" class="btn btn-primary">
+      <a href="/index/dono" class="btn btn-secondary">Cancelar</a>
     </form>
-    <a href="/index/dono">Voltar</a>
-  </body>
+    
+  </div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
 </html>

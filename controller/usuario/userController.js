@@ -1,5 +1,8 @@
 const pool = require('../../db');
 
+
+
+
 const UserController = {
 
   async consultaUsuario(req,res){
@@ -11,6 +14,10 @@ const UserController = {
         console.error(error);
         res.status(500).send('Erro ao executar consulta no banco de dados');
       } else if (results.rows.length > 0) {
+
+         // Armazena o ID do usuário na sessão
+         req.session.userID = results.rows[0].cod_usuario;
+
         // O login e a senha existem no banco de dados
         res.redirect('/index');
       } else {
@@ -53,7 +60,9 @@ async paginaUsuarioDelete(req,res){
   },
 
   async paginaLogin(req, res) {
-    res.render('login')
+   const message = req.session.message;
+   req.session.message = null;
+    res.render('login', {message});
   },
   async paginaUsuarioAdd(req, res) {
     res.render('usuarioAdd')

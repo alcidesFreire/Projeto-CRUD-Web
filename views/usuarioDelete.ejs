@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Deletar Item</title>
-    <style>
-      label {
-        display: block;
-        margin-bottom: 8px;
-      }
-      input[type="submit"] {
-        margin-top: 16px;
-      }
-    </style>
-  </head>
-  <body>
- 
-    <% const msg = '';%>
+<head>
+  <title>Deletar Item</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
 
-    <h1>Excluir usuario <%= data.nome %></h1>
-    <% if (msg) { %>
+<% const msg = '';%>
+
+<div class="container">
+  <h1>Excluir usuário <%= data.nome %></h1>
+  <% if (msg) { %>
     <p><%= msg %></p>
-    <% } %>
+  <% } %>
 
-    
-    <form action="/delete/usuario/<%= data.cod_usuario %>" method="post">
-      <label for="confirm-delete">Tem certeza que deseja excluir o usuario <%= data.nome %>?</label>
-      <input type="checkbox" id="confirm-delete" name="confirm-delete" required>
-      <input type="submit" value="Deletar">
-    </form>
-    <a href="/index/usuario">cancelar</a>
-  </body>
+  <form action="/delete/usuario/<%= data.cod_usuario %>" method="post">
+    <div class="form-group">
+      <label for="confirm-delete">Tem certeza que deseja excluir o usuário <%= data.nome %>?</label>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="confirm-delete" name="confirm-delete" required>
+        <label class="form-check-label" for="confirm-delete">Confirmar exclusão</label>
+      </div>
+    </div>
+    <input type="submit" class="btn btn-danger" value="Excluir">
+    <a href="/index/usuario" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
 </html>

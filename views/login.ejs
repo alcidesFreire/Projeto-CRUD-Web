@@ -79,6 +79,7 @@ text-decoration: none;
     </style>
     <div class="container">
         <h2>Alcides Veiculos</h2>
+       
         <form method="post" action="/consulta">
             <label for="email" >Usuário:</label>
             <input type="text" class="email" name="email" placeholder="Insira o email" required>
@@ -89,6 +90,11 @@ text-decoration: none;
             <button type="submit" class="logar">Login</button>
            
         </form>
+
+        
+        <% if (message) { %>
+            <p><strong><%= message %></strong></p>
+        <% } %>
     </div>
 </body>
 </html>
