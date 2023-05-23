@@ -1,59 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Adicionar Dono</title>
-    <style>
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-      }
-      label, input {
-        margin-bottom: 10px;
-      }
-      input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin-bottom: 20px;
-        cursor: pointer;
-      }
-      input[type=submit]:hover {
-        background-color: #45a049;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Adicionar Dono</h1>
-      <form method="post" action="/add/dono">
+
+<head>
+  <meta charset="utf-8">
+  <title>Adicionar Usuário</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .container {
+
+      margin: 10px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+      max-width: 700px;
+      max-height: 650px;
+
+    }
+
+    body {
+      background-color: rgb(231, 229, 226);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label,
+    input {
+      margin-bottom: 10px;
+    }
+
+    .cancelar {
+      max-width: 100px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Adicionar Dono</h1>
+
+    <form method="post" action="/add/dono">
+
+      <div class="form-group">
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome" name="nome" class="form-control form-control-sm" required>
+      </div>
 
+      <div class="form-group">
         <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" name="telefone" required>
+        <input type="text" id="telefone" name="telefone" class="form-control form-control-sm" required>
+      </div>
 
+      <div class="form-group">
         <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" required>
+        <input type="text" id="cpf" name="cpf" class="form-control form-control-sm" required>
+      </div>
 
-        <label for="senha">Endereço::</label>
-        <input type="text" id="endereco" name="endereco" required>
+      <div class="form-group">
+        <label for="senha">endereco:</label>
+        <input type="text" id="endereco" name="endereco" class="form-control form-control-sm" required>
+      </div>
 
+      <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" class="form-control form-control-sm" required>
+      </div>
+      <input type="submit" value="Adicionar dono" class="btn btn-primary">
+      <a href="/index/dono" class="mt-3 btn btn-secondary cancelar">Cancelar</a>
+    </form>
+  </div>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
 
-        <input type="submit" value="Adicionar Dono">
-      </form>
-      <a href="/index/usuario">Voltar</a>
-    </div>
-  </body>
 </html>

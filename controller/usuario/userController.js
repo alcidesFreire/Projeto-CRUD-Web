@@ -18,6 +18,9 @@ const UserController = {
          // Armazena o ID do usuário na sessão
          req.session.userID = results.rows[0].cod_usuario;
 
+         //Armazena o Nome do usuario na sessão
+         req.session.username = results.rows[0].nome;
+
         // O login e a senha existem no banco de dados
         res.redirect('/index');
       } else {
@@ -25,6 +28,20 @@ const UserController = {
         res.status(401).send('Login e/ou senha incorretos');
       }
     });
+  },
+
+  async logout(req,res){
+req.session.destroy((error)=>{
+  if(error){
+    console.error(error);
+    res.status(500).send('Erro ao fazer logout');
+  }else{
+    
+    res.redirect('/');
+  }
+});
+
+    
   },
 
 async paginaUsuarioDelete(req,res){
@@ -44,10 +61,20 @@ async paginaUsuarioDelete(req,res){
   async adicionaUsuario(req,res){
     try {
       const {nome,telefone,cpf,senha,email} = req.body;
+      const cpfSemCaracteresEspeciais = req.body.cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
 
+      const emailExists = await pool.query('SELECT * FROM usuario WHERE email = $1', [email]);
+      if (emailExists.rowCount > 0) {
+        // Já existe um usuário com o mesmo email, retorne uma mensagem de erro ou redirecione para uma página de erro
+        return res.send('Já existe um usuário com esse email');
+      }
+      const cpfExists = await pool.query('SELECT * FROM usuario where cpf = $1', [cpf]);
+      if(cpfExists.rowCount>0){
+        return res.send('já existe um usuário com esse CPF');
+      }
     const result = await pool.query(
       'INSERT INTO usuario (nome, telefone, cpf, senha, email) VALUES ($1, $2, $3, $4, $5)',
-      [nome, telefone, cpf, senha, email]
+      [nome, telefone, cpfSemCaracteresEspeciais, senha, email]
     );
     res.redirect('/index/usuario');
   } catch (err) {
@@ -56,7 +83,9 @@ async paginaUsuarioDelete(req,res){
   }
   },
   async paginaIndex(req,res){
-    res.render('index')
+    const username = req.session.username;
+
+    res.render('index', { username })
   },
 
   async paginaLogin(req, res) {

@@ -27,6 +27,7 @@ app.use(session({
 //pagina inicial para efetuar o login
 app.get('/',  UserController.paginaLogin);
 
+app.get('/logout', UserController.logout);
 //metodo que verifica se o login e senha existem no banco de dados
 app.post('/consulta', UserController.consultaUsuario);
 

@@ -4,97 +4,95 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-    
     <title>Alcides</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4cbbea;
+            color: #fff;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #4ab1de;
+            border: 1px solid black;
+        }
+
+        .cadastro {
+            margin-left: 160px;
+            text-decoration: none;
+        }
+
+        .cadastro:hover {
+            color: #ef4949;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <style>
-        * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-}
-
-.container {
-    margin: 10px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-input[type=text],
-input[type=password] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #4cbbea;
-    color: #fff;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #4ab1de;
-    border: 1px solid black;
-}
-.cadastro{
-margin-left: 160px;
-text-decoration: none;
-}
-
-.cadastro:hover{
-    color: #ef4949;
-}
-
-@media screen and (max-width: 600px) {
-    .container {
-        width: 100%;
-        padding: 10px;
-    }
-}
-    </style>
     <div class="container">
         <h2>Alcides Veiculos</h2>
        
         <form method="post" action="/consulta">
-            <label for="email" >Usuário:</label>
-            <input type="text" class="email" name="email" placeholder="Insira o email" required>
+            <div class="form-group">
+                <label for="email">Usuário:</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Insira o email" required>
+            </div>
             
-            <label for="senha" >Senha:</label>
-            <input type="password" class="senha" name="senha" placeholder="Insira a senha" required>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Insira a senha" required>
+            </div>
             
-            <button type="submit" class="logar">Login</button>
-           
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
 
-        
         <% if (message) { %>
             <p><strong><%= message %></strong></p>
         <% } %>
     </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
