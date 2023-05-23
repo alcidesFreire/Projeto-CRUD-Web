@@ -68,8 +68,11 @@ async paginaUsuarioDelete(req,res){
         // Já existe um usuário com o mesmo email, retorne uma mensagem de erro ou redirecione para uma página de erro
         return res.send('Já existe um usuário com esse email');
       }
-      const cpfExists = await pool.query('SELECT * FROM usuario where cpf = $1', [cpf]);
+
+      const cpfExists = await pool.query('SELECT * FROM usuario where cpf = $1', [cpfSemCaracteresEspeciais]);
       if(cpfExists.rowCount>0){
+                // Já existe um usuário com o mesmo cpf, retorne uma mensagem de erro ou redirecione para uma página de erro
+
         return res.send('já existe um usuário com esse CPF');
       }
     const result = await pool.query(
