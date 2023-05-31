@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CRUD com Node.js e Postgres - Veículos</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    .topo {
+      text-align: center;
+    }
+    .container {
+      margin: 10px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+      max-width: 1200px;
+    }
+    body {
+      background-color: rgb(231, 229, 226);
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 100%;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- <% const msg = ''; %> -->
+
+  <div class="container">
+    <h1 class="topo">Veículos</h1>
+    <a href="/add/veiculo" class="btn btn-primary mt-3">Adicionar Veículo</a>
+    <a href="/index" class="btn btn-success mt-3 voltar">Voltar</a>
+
+    <table class="table table-bordered mt-3">
+      <thead class="thead-light">
+        <tr>
+          <th>ID</th>
+          <th>Modelo</th>
+          <th>Placa</th>
+          <th>Preço</th>
+          <th>Cor</th>
+          <th>Fabricação</th>
+          <th>Descrição</th>
+          <th>Status</th>
+          <th>Marca</th>
+          <th>Dono</th>
+          <th>Usuário que cadastrou</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach((item) => { %>
+        <tr>
+          <td><%= item.cod_veiculo %></td>
+          <td><%= item.nomemodelo %></td>
+          <td><%= item.placa %></td>
+          <td><%= item.preco %></td>
+          <td><%= item.cor %></td>
+          <td><%= new Date(item.ano).toLocaleDateString() %></td>
+          <td><%= item.descricao %></td>
+          <td><%= item.status %></td>
+          <td><%= item.nomemarca %></td>
+          <td><%= item.nomedono %></td>
+          <td><%= item.nomeusuario %></td>
+          
+          <td>
+            <a href="/edit/veiculo/<%= item.cod_veiculo %>" class="btn btn-sm btn-primary">
+              <i class="fas fa-edit"></i> Editar
+            </a>
+            <a href="/delete/veiculo/<%= item.cod_veiculo %>" class="btn btn-sm btn-danger">
+              <i class="fas fa-trash-alt"></i> Excluir
+            </a>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</body>
+</html>

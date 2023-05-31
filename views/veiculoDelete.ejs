@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deletar veiculo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<style>
+   .container {
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+        }
+        body{
+      background-color: rgb(231, 229, 226);
+    }
+</style>
+<body>
+
+<% const msg = '';%>
+
+<div class="container">
+  <h1>Excluir veiculo <%= nomeDoModelo.nomemodelo %> da placa <%= data.placa %></h1>
+  <% if (msg) { %>
+    <p><%= msg %></p>
+  <% } %>
+
+  <form action="/delete/veiculo/<%= data.cod_veiculo %>" method="post">
+    <div class="form-group">
+      <label for="confirm-delete">Tem certeza que deseja excluir o veiculo <%= nomeDoModelo.nomemodelo %> da placa <%= data.placa %>?</label>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="confirm-delete" name="confirm-delete" required>
+        <label class="form-check-label" for="confirm-delete"><strong>Confirmar exclusão</strong> </label>
+      </div>
+    </div>
+    <input type="submit" class="btn btn-danger" value="Excluir">
+    <a href="/index/veiculo" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

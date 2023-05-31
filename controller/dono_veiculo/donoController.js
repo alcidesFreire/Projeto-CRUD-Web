@@ -13,10 +13,24 @@ async donoIndex(req, res) {
   async adicionaDono(req,res){
     try {
       const {nome,telefone,cpf,endereco,email} = req.body;
+      const cpfSemCaracteresEspeciais = req.body.cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
 
+      const cpfExists = await pool.query('SELECT * FROM dono_veiculo where cpf = $1', [cpfSemCaracteresEspeciais]);
+      if(cpfExists.rowCount>0){
+                // Já existe um usuário com o mesmo cpf, retorne uma mensagem de erro ou redirecione para uma página de erro
+
+        return res.send('já existe um dono com esse CPF');
+      }
+
+      const emailExists = await pool.query('SELECT * FROM dono_veiculo WHERE email = $1', [email]);
+      if (emailExists.rowCount > 0) {
+        // Já existe um usuário com o mesmo email, retorne uma mensagem de erro ou redirecione para uma página de erro
+        return res.send('Já existe um dono com esse email');
+      }
+     
     const result = await pool.query(
       'INSERT INTO dono_veiculo (nome, telefone, cpf, endereco, email) VALUES ($1, $2, $3, $4, $5)',
-      [nome, telefone, cpf, endereco, email]
+      [nome, telefone, cpfSemCaracteresEspeciais, endereco, email]
     );
     res.redirect('/index/dono');
   } catch (err) {

@@ -30,14 +30,15 @@ const UserController = {
     });
   },
 
-  async logout(req,res){
+  async logOut(req,res){
 req.session.destroy((error)=>{
   if(error){
     console.error(error);
     res.status(500).send('Erro ao fazer logout');
   }else{
-    
-    res.redirect('/');
+ 
+    res.render('logout');
+
   }
 });
 

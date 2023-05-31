@@ -5,6 +5,7 @@ const port = 3000;
 const app = express();
 const UserController = require('./controller/usuario/userController');
 const donoController = require('./controller/dono_veiculo/donoController');
+const veiculoController = require('./controller/veiculo/veiculoController');
 const session = require('express-session');
 const protecao = require('./autenticacao');
 
@@ -17,17 +18,18 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.get('/obterModelos', protecao, veiculoController.obterModelos);
 
-
-
-
-
-
+app.post('/add/veiculo', protecao, veiculoController.adicionaVeiculo);
+app.get('/edit/veiculo/:cod_veiculo', protecao, veiculoController.paginaVeiculoEdit);
+app.post('/edit/veiculo/:cod_veiculo', protecao, veiculoController.adicionaVeiculo);
+app.get('/delete/veiculo/:cod_veiculo', protecao, veiculoController.paginaVeiculoDelete);
+app.post('/delete/veiculo/:cod_veiculo', protecao, veiculoController.deletaVeiculo);
 
 //pagina inicial para efetuar o login
 app.get('/',  UserController.paginaLogin);
 
-app.get('/logout', UserController.logout);
+app.post('/logout', protecao, UserController.logOut);
 //metodo que verifica se o login e senha existem no banco de dados
 app.post('/consulta', UserController.consultaUsuario);
 
@@ -53,6 +55,10 @@ app.post('/delete/dono/:cod_dono_veiculo', protecao, donoController.deletaDono);
 
 //pagina que mostra a lista de usuarios
 app.get('/index/usuario', protecao, UserController.indexUsuario);
+
+//pagina que mostra a lista de veículos
+app.get('/index/veiculo', protecao, veiculoController.veiculoIndex);
+app.get('/add/veiculo', protecao, veiculoController.paginaVeiculoAdd);
 
 //pagina que efetua a adição de um novo usuario
 app.get('/add/usuario', protecao, UserController.paginaUsuarioAdd);

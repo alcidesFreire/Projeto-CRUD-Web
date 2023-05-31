@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editar Veículo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    /* Additional custom styles */
+    h1 {
+      text-align: center;
+    }
+
+    body {
+      background-color: rgb(231, 229, 226);
+    }
+
+    .container {
+      margin: 10px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+      max-width: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form action="/edit/veiculo/<%= data.cod_veiculo %>" method="post">
+      <div class="form-group">
+        <label for="placa">Placa:</label>
+        <input type="text" id="placa" name="placa" class="form-control form-control-sm" value="<%= data.placa %>" required>
+      </div>
+      <div class="form-group">
+        <label for="modelo">Modelo Atual:</label>
+        <input type="text" id="modeloAtual" name="modeloAtual" class="form-control form-control-sm" value="<%= data.nomemodelo %>"   readonly>
+      </div>
+      
+
+      <div class="form-group">
+        <label for="marca">Marca:</label>
+        <select id="marca" name="marca" class="form-control form-control-sm" required>
+          <option value="" disabled selected>Selecione uma marca</option> <!-- Placeholder -->
+          <% marcas.forEach(function(marca) { %>
+            <option value="<%= marca.nome %>" <% if (marca.nome === data.marca) { %>selected<% } %>><%= marca.nome %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="modelo">Modelo:</label>
+        <select id="modelo" name="modelo" class="form-control">
+
+          <!-- Opções de modelo serão carregadas dinamicamente com base na marca selecionada -->
+        </select>
+      </div>
+     
+
+      <div class="form-group">
+        <label for="preco">Preço:</label>
+        <input type="text" id="preco" name="preco" class="form-control form-control-sm" value="<%= data.preco %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="cor">Cor:</label>
+        <input type="text" id="cor" name="cor" class="form-control form-control-sm" value="<%= data.cor %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ano">Ano:</label>
+        <input type="text" id="ano" name="ano" class="form-control form-control-sm" value="<%= data.ano.toLocaleDateString() %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" class="form-control form-control-sm" value="<%= data.descricao %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select id="status" name="status" class="form-control form-control-sm" required>
+          <% statusOptions.forEach(function(option) { %>
+            <option value="<%= option %>" <% if (option === data.status) { %>selected<% } %>><%= option %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="dono_nome">Dono:</label>
+        <select id="dono_nome" name="dono_nome" class="form-control form-control-sm" required>
+          <% if (dono_nome && dono_nome.length > 0) { %>
+            <% dono_nome.forEach(function(dono) { %>
+              <option value="<%= dono.nomedono %>" <% if (dono.nomedono === data.nomedono) { %>selected<% } %>><%= dono.nomedono %></option>
+            <% }) %>
+          <% } %>
+        </select>
+      </div>
+      
+      
+
+      <div class="form-group">
+        <label for="usuario_nome">Usuário:</label>
+        <input type="text" id="usuario_nome" name="usuario_nome" class="form-control form-control-sm" value="<%= usuario_nome %>" required readonly>
+      </div>
+
+      <input type="submit" value="Atualizar" class="btn btn-primary">
+      <a href="/index/veiculo" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script>
+ $(document).ready(function() {
+    $('#ano').mask('00/00/0000');
+  
+  });
+
+    $(document).ready(function() {
+      // Evento change no combo box de marca
+      $('#marca').on('change', function() {
+        var marcaSelecionada = $(this).val();
+
+        // Limpar o combo box de modelo
+        $('#modelo').empty();
+
+        // Requisição AJAX para obter os modelos correspondentes à marca selecionada
+        $.ajax({
+          url: '/obterModelos', // Rota para obter os modelos no servidor
+          method: 'GET',
+          data: { marca: marcaSelecionada },
+          success: function(response) {
+            var modelos = response.modelos;
+
+            // Preencher o combo box de modelo com as opções obtidas
+            modelos.forEach(function(modelo) {
+              $('#modelo').append('<option value="' + modelo + '">' + modelo + '</option>');
+            });
+          },
+          error: function() {
+            console.error('Erro ao obter modelos');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
